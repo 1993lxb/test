@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xt.dao.MaterielInventoryMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.MaterielInventory" >
+    <id column="inventory_num" property="inventoryNum" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user_id" property="addUserId" jdbcType="BIGINT" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+    <result column="edit_id" property="editId" jdbcType="BIGINT" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="inventory_date" property="inventoryDate" jdbcType="DATE" />
+    <result column="method" property="method" jdbcType="INTEGER" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="warehouse_id" property="warehouseId" jdbcType="BIGINT" />
+    <result column="upn" property="upn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    inventory_num, add_time, add_user_id, delete_state, edit_id, edit_time, inventory_date, 
+    method, notes, order_num, warehouse_id, upn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cx_materiel_inventory
+    where inventory_num = #{inventoryNum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cx_materiel_inventory
+    where inventory_num = #{inventoryNum,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xt.vo.MaterielInventory" >
+    insert into cx_materiel_inventory (inventory_num, add_time, add_user_id, 
+      delete_state, edit_id, edit_time, 
+      inventory_date, method, notes, 
+      order_num, warehouse_id, upn
+      )
+    values (#{inventoryNum,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=BIGINT}, 
+      #{deleteState,jdbcType=INTEGER}, #{editId,jdbcType=BIGINT}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{inventoryDate,jdbcType=DATE}, #{method,jdbcType=INTEGER}, #{notes,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=VARCHAR}, #{warehouseId,jdbcType=BIGINT}, #{upn,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.vo.MaterielInventory" >
+    insert into cx_materiel_inventory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="inventoryNum != null" >
+        inventory_num,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="editId != null" >
+        edit_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="inventoryDate != null" >
+        inventory_date,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id,
+      </if>
+      <if test="upn != null" >
+        upn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="inventoryNum != null" >
+        #{inventoryNum,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inventoryDate != null" >
+        #{inventoryDate,jdbcType=DATE},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null" >
+        #{warehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="upn != null" >
+        #{upn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.vo.MaterielInventory" >
+    update cx_materiel_inventory
+    <set >
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        add_user_id = #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        edit_id = #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inventoryDate != null" >
+        inventory_date = #{inventoryDate,jdbcType=DATE},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id = #{warehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="upn != null" >
+        upn = #{upn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where inventory_num = #{inventoryNum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.vo.MaterielInventory" >
+    update cx_materiel_inventory
+    set add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user_id = #{addUserId,jdbcType=BIGINT},
+      delete_state = #{deleteState,jdbcType=INTEGER},
+      edit_id = #{editId,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      inventory_date = #{inventoryDate,jdbcType=DATE},
+      method = #{method,jdbcType=INTEGER},
+      notes = #{notes,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=VARCHAR},
+      warehouse_id = #{warehouseId,jdbcType=BIGINT},
+      upn = #{upn,jdbcType=VARCHAR}
+    where inventory_num = #{inventoryNum,jdbcType=VARCHAR}
+  </update>
+</mapper>

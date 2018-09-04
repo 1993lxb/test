@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xt.dao.StorageHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.StorageHistory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user_id" property="addUserId" jdbcType="BIGINT" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+    <result column="edit_id" property="editId" jdbcType="BIGINT" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="actual_num" property="actualNum" jdbcType="INTEGER" />
+    <result column="audit_state" property="auditState" jdbcType="INTEGER" />
+    <result column="failed_num" property="failedNum" jdbcType="INTEGER" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+    <result column="pn" property="pn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, add_time, add_user_id, delete_state, edit_id, edit_time, actual_num, audit_state, 
+    failed_num, order_num, status, total_num, pn
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cx_storage_history
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cx_storage_history
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xt.vo.StorageHistory" >
+    insert into cx_storage_history (id, add_time, add_user_id, 
+      delete_state, edit_id, edit_time, 
+      actual_num, audit_state, failed_num, 
+      order_num, status, total_num, 
+      pn)
+    values (#{id,jdbcType=BIGINT}, #{addTime,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=BIGINT}, 
+      #{deleteState,jdbcType=INTEGER}, #{editId,jdbcType=BIGINT}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{actualNum,jdbcType=INTEGER}, #{auditState,jdbcType=INTEGER}, #{failedNum,jdbcType=INTEGER}, 
+      #{orderNum,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{totalNum,jdbcType=INTEGER}, 
+      #{pn,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.vo.StorageHistory" >
+    insert into cx_storage_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="editId != null" >
+        edit_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="actualNum != null" >
+        actual_num,
+      </if>
+      <if test="auditState != null" >
+        audit_state,
+      </if>
+      <if test="failedNum != null" >
+        failed_num,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+      <if test="pn != null" >
+        pn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualNum != null" >
+        #{actualNum,jdbcType=INTEGER},
+      </if>
+      <if test="auditState != null" >
+        #{auditState,jdbcType=INTEGER},
+      </if>
+      <if test="failedNum != null" >
+        #{failedNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="pn != null" >
+        #{pn,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.vo.StorageHistory" >
+    update cx_storage_history
+    <set >
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        add_user_id = #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        edit_id = #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualNum != null" >
+        actual_num = #{actualNum,jdbcType=INTEGER},
+      </if>
+      <if test="auditState != null" >
+        audit_state = #{auditState,jdbcType=INTEGER},
+      </if>
+      <if test="failedNum != null" >
+        failed_num = #{failedNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="pn != null" >
+        pn = #{pn,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.vo.StorageHistory" >
+    update cx_storage_history
+    set add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user_id = #{addUserId,jdbcType=BIGINT},
+      delete_state = #{deleteState,jdbcType=INTEGER},
+      edit_id = #{editId,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      actual_num = #{actualNum,jdbcType=INTEGER},
+      audit_state = #{auditState,jdbcType=INTEGER},
+      failed_num = #{failedNum,jdbcType=INTEGER},
+      order_num = #{orderNum,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      pn = #{pn,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

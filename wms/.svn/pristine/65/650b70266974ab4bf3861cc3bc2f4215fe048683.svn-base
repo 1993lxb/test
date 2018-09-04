@@ -1,0 +1,52 @@
+package com.xt.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.xt.dao.WarehouseMapper;
+import com.xt.vo.Param;
+import com.xt.vo.Warehouse;
+
+@Service("warehouseSerice")
+public class WarehouseServiceImp implements IWarehouseService{
+	@Autowired
+	private WarehouseMapper warehouseDao;
+
+	/**
+	 * 查询仓库：动态查询
+	 */
+	public List<Warehouse> findWarehouseByParam(Param param, String name) {
+		return warehouseDao.findAllWarehouse(param, name);
+	}
+
+	/**
+	 * 查询总条数：动态查询
+	 */
+	public Integer getTotalRows(Param param, String name) {
+		return warehouseDao.getTotalRows(param, name);
+	}
+
+	@Override
+	public int insertWarehouse(Warehouse warehouse) {
+		return warehouseDao.addWarehouse(warehouse);
+	}
+
+	@Override
+	public int delWarehouse(long id) {
+		
+		return warehouseDao.delWarehouse(id);
+	}
+
+	@Override
+	public List<Warehouse> findWarehouse() {
+		// TODO Auto-generated method stub
+		return warehouseDao.findWarehouse();
+	}
+
+
+
+	
+
+}

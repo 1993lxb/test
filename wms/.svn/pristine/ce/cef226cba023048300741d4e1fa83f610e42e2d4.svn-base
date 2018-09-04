@@ -1,0 +1,17 @@
+package com.xt.dao;
+
+import com.xt.vo.WarehouseArea;
+
+public interface WarehouseAreaMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(WarehouseArea record);
+
+    int insertSelective(WarehouseArea record);
+
+    WarehouseArea selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(WarehouseArea record);
+
+    int updateByPrimaryKey(WarehouseArea record);
+}

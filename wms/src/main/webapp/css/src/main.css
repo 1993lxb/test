@@ -1,0 +1,320 @@
+@charset "UTF-8";
+.spaced10 {
+  height: 10px; }
+
+.spaced15 {
+  height: 15px; }
+
+.text-c {
+  text-align: center; }
+
+.text-r {
+  text-align: right; }
+
+.input-group-select {
+  padding: 0; }
+
+.input-group-select-btn {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: 0; }
+
+.min-width-120 {
+  min-width: 120px; }
+
+.hr10 {
+  margin: 10px 0;
+  width: 100%;
+  height: 1px;
+  background-color: #82a6c5; }
+
+/*系统色*/
+/* #333*/
+/*fff*/
+html {
+  width: 100%;
+  height: 100%;
+  min-width: 1024px; }
+
+body {
+  height: 100%;
+  position: relative;
+  overflow-x: auto;
+  font-family: "微软雅黑", "黑体", "宋体", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+ul {
+  margin: 0;
+  padding: 0; }
+
+ul {
+  list-style: none; }
+
+a {
+  color: #fff;
+  text-decoration: none; }
+
+a:hover {
+  color: #00c7ff;
+  text-decoration: none; }
+
+a:focus {
+  text-decoration: none;
+  outline: none; }
+
+.checkbox {
+  position: relative; }
+
+.checkbox input[type="checkbox"] {
+  opacity: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  margin-left: -40px; }
+
+.checkbox label {
+  padding: 0;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ccc;
+  border-radius: 4px; }
+
+.checkbox span {
+  margin-left: 15px;
+  position: relative;
+  top: -5px; }
+
+.checkbox > .glyphicon-ok::before {
+  font-size: 20px;
+  color: transparent; }
+
+.checked > .glyphicon-ok::before {
+  font-size: 20px;
+  color: #004990; }
+
+.select {
+  width: 100%;
+  top: -7px;
+  left: -13px; }
+
+.fw::after {
+  content: "";
+  display: block;
+  clear: both; }
+
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
+.wrap {
+  width: 100%;
+  min-height: 100%; }
+
+.wrap-login {
+  height: 100%;
+  padding-top: 168px;
+  background: url("../../images/login-bg.jpg") repeat; }
+
+.wrap-common {
+  background-color: #f0f3f6; }
+
+.wrap-login .logo {
+  margin: 0 auto;
+  width: 220px;
+  height: 76px;
+  background: url("../../images/logo.png") no-repeat; }
+
+.login-head {
+  margin-top: 68px;
+  padding: 13px;
+  background-color: #004990;
+  color: #fff;
+  font-size: 32px;
+  text-align: center; }
+
+.login-form {
+  margin: 68px auto 0;
+  width: 524px; }
+
+.login-form #userName,
+.login-form #userPwd {
+  height: 60px;
+  color: #6e6f74;
+  font-size: 25px; }
+
+.userName-wrap {
+  position: relative;
+  height: auto;
+  margin-bottom: -1px; }
+
+.userName-wrap .input-group-addon {
+  border-bottom-left-radius: 0px; }
+
+.userName-wrap #userName {
+  border-bottom-right-radius: 0px; }
+
+.userName-wrap #userName:focus {
+  z-index: 3; }
+
+.userPwd-wrap {
+  position: relative;
+  height: auto; }
+
+.userPwd-wrap .input-group-addon {
+  border-top-left-radius: 0px; }
+
+.userName-wrap #userPwd {
+  border-top-right-radius: 0px; }
+
+.rememberMe-wrap {
+  margin-top: 10px;
+  margin-bottom: 20px; }
+
+#btnLogin {
+  font-size: 26px;
+  background: -webkit-linear-gradient(top, #005eb9, #004990);
+  /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(bottom, #005eb9, #004990);
+  /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(bottom, #005eb9, #004990);
+  /* Firefox 3.6 - 15 */
+  background: linear-gradient(to bottom, #005eb9, #004990);
+  /* 标准的语法 */ }
+
+.modal-header {
+  background-color: #337ab7;
+  color: #fff; }
+
+.header {
+  background-color: #fff; }
+
+.header .logo {
+  display: inline-block;
+  width: 190px;
+  height: 58px;
+  background: url("../../images/logo-t.png") center center no-repeat;
+  border-right: 1px solid #f3f3f3; }
+
+.header h1 {
+  margin: 16px;
+  color: #004990;
+  font-size: 24px; }
+
+.content {
+  margin-left: 190px; }
+
+.sidebar {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 58px; }
+
+.search {
+  padding: 30px 0 0 30px; }
+
+.toolbar {
+  padding: 15px 0 15px 50px;
+  border-top: 2px solid #337ab7; }
+
+.main {
+  padding: 10px;
+  border-top: 2px solid #bfbfbf; }
+
+.table {
+  background-color: #fff; }
+
+.table thead tr th {
+  padding: 8px 15px;
+  background-color: #d9e4ee; }
+
+.table tbody tr td {
+  padding: 5px 15px; }
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+  vertical-align: middle;
+  text-align: center; }
+
+.table > thead > tr > td > button {
+  margin-right: 5px; }
+
+.search .form-group {
+  margin: 0 20px;
+  margin-bottom: 15px; }
+
+.sidebar .menu {
+  display: inline-block;
+  width: 190px;
+  color: #fff;
+  font-size: 14px;
+  background: #004990;
+  min-height: 100%; }
+
+.sidebar .menu > li > a {
+  position: relative;
+  display: inline-block;
+  padding-left: 40px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #084f93;
+  cursor: pointer; }
+
+.sidebar .menu .submenu > li > a {
+  position: relative;
+  display: inline-block;
+  padding-left: 15px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #084f93;
+  border-left: 1px dotted #fff; }
+
+.sidebar .menu .submenu > li > a::before {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 7px;
+  left: 0px;
+  top: 20px;
+  border-top: 1px dotted #fff; }
+
+.sidebar .menu a > .arrow {
+  display: inline-block;
+  position: absolute;
+  right: 11px;
+  top: 11px;
+  padding: 0; }
+
+.sidebar .menu a > .menuicon {
+  display: inline-block;
+  position: absolute;
+  left: 11px;
+  top: 11px;
+  padding: 0; }
+
+.sidebar .menu .submenu {
+  display: none;
+  padding-left: 18px; }
+
+.sidebar .menu > .open > a {
+  background-color: #003e7b; }
+
+.sidebar .menu > .open .submenu {
+  background-color: #004385; }
+
+.sidebar .menu .active > a {
+  color: #00c7ff;
+  border-right: 4px solid #00c7ff; }

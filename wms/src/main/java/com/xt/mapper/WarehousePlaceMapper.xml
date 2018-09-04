@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xt.dao.WarehousePlaceMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.WarehousePlace" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user_id" property="addUserId" jdbcType="BIGINT" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+    <result column="edit_id" property="editId" jdbcType="BIGINT" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="positionx" property="positionx" jdbcType="INTEGER" />
+    <result column="positiony" property="positiony" jdbcType="INTEGER" />
+    <result column="specification" property="specification" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="m_group_id" property="mGroupId" jdbcType="BIGINT" />
+    <result column="area_id" property="areaId" jdbcType="BIGINT" />
+    <result column="cur_use" property="curUse" jdbcType="INTEGER" />
+    <result column="max_cap" property="maxCap" jdbcType="INTEGER" />
+    <result column="size" property="size" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, add_time, add_user_id, delete_state, edit_id, edit_time, name, notes, positionx, 
+    positiony, specification, status, m_group_id, area_id, cur_use, max_cap, size
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cx_warehouse_place
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cx_warehouse_place
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xt.vo.WarehousePlace" >
+    insert into cx_warehouse_place (id, add_time, add_user_id, 
+      delete_state, edit_id, edit_time, 
+      name, notes, positionx, 
+      positiony, specification, status, 
+      m_group_id, area_id, cur_use, 
+      max_cap, size)
+    values (#{id,jdbcType=BIGINT}, #{addTime,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=BIGINT}, 
+      #{deleteState,jdbcType=INTEGER}, #{editId,jdbcType=BIGINT}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{notes,jdbcType=VARCHAR}, #{positionx,jdbcType=INTEGER}, 
+      #{positiony,jdbcType=INTEGER}, #{specification,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{mGroupId,jdbcType=BIGINT}, #{areaId,jdbcType=BIGINT}, #{curUse,jdbcType=INTEGER}, 
+      #{maxCap,jdbcType=INTEGER}, #{size,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.vo.WarehousePlace" >
+    insert into cx_warehouse_place
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="editId != null" >
+        edit_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+      <if test="positionx != null" >
+        positionx,
+      </if>
+      <if test="positiony != null" >
+        positiony,
+      </if>
+      <if test="specification != null" >
+        specification,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="mGroupId != null" >
+        m_group_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="curUse != null" >
+        cur_use,
+      </if>
+      <if test="maxCap != null" >
+        max_cap,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="positionx != null" >
+        #{positionx,jdbcType=INTEGER},
+      </if>
+      <if test="positiony != null" >
+        #{positiony,jdbcType=INTEGER},
+      </if>
+      <if test="specification != null" >
+        #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="mGroupId != null" >
+        #{mGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="curUse != null" >
+        #{curUse,jdbcType=INTEGER},
+      </if>
+      <if test="maxCap != null" >
+        #{maxCap,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.vo.WarehousePlace" >
+    update cx_warehouse_place
+    <set >
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        add_user_id = #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        edit_id = #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="positionx != null" >
+        positionx = #{positionx,jdbcType=INTEGER},
+      </if>
+      <if test="positiony != null" >
+        positiony = #{positiony,jdbcType=INTEGER},
+      </if>
+      <if test="specification != null" >
+        specification = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="mGroupId != null" >
+        m_group_id = #{mGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="curUse != null" >
+        cur_use = #{curUse,jdbcType=INTEGER},
+      </if>
+      <if test="maxCap != null" >
+        max_cap = #{maxCap,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.vo.WarehousePlace" >
+    update cx_warehouse_place
+    set add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user_id = #{addUserId,jdbcType=BIGINT},
+      delete_state = #{deleteState,jdbcType=INTEGER},
+      edit_id = #{editId,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      notes = #{notes,jdbcType=VARCHAR},
+      positionx = #{positionx,jdbcType=INTEGER},
+      positiony = #{positiony,jdbcType=INTEGER},
+      specification = #{specification,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      m_group_id = #{mGroupId,jdbcType=BIGINT},
+      area_id = #{areaId,jdbcType=BIGINT},
+      cur_use = #{curUse,jdbcType=INTEGER},
+      max_cap = #{maxCap,jdbcType=INTEGER},
+      size = #{size,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.dao.MoveTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.MoveType" >
+    <id column="id" property="id"  />
+    <result column="add_time" property="addTime"  />
+    <result column="add_user_id" property="addUserId" />
+    <result column="delete_state" property="deleteState"  />
+    <result column="edit_id" property="editId" />
+    <result column="edit_time" property="editTime"  />
+    <result column="name" property="name"  />
+    <result column="notes" property="notes"  />
+  </resultMap>
+  
+  <select id="findAllMoveType" parameterType="com.xt.vo.MoveType" resultMap="BaseResultMap">
+     select * from cx_move_type where delete_state=0
+      <if test="name !=null">
+		   and name like CONCAT('%',#{name},'%')
+     </if>
+  </select>
+  
+  <update id="updateMoveTypeById" parameterType="com.xt.vo.MoveType">
+     update cx_move_type
+     <set>
+        <if test="editId !=null">
+            edit_id=#{editId},
+        </if>
+            edit_time=now(),
+        
+        <if test="name !=null">
+            name=#{name},
+        </if>
+        <if test="notes !=null">
+            notes=#{notes},
+        </if>
+       
+     </set>
+      where id=#{id} 
+      <if test="editTime==null">  and edit_time is #{editTime} </if> 
+      <if test="editTime!=null">  and edit_time = #{editTime} </if>
+  </update>
+</mapper>

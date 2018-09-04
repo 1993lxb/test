@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xt.dao.MaterielMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.Materiel" >
+    <id column="pn" property="pn" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user_id" property="addUserId" jdbcType="BIGINT" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+    <result column="depletion_num" property="depletionNum" jdbcType="INTEGER" />
+    <result column="edit_id" property="editId" jdbcType="BIGINT" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="humidity_day" property="humidityDay" jdbcType="INTEGER" />
+    <result column="is_humidity" property="isHumidity" jdbcType="INTEGER" />
+    <result column="limit_num" property="limitNum" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="repair_num" property="repairNum" jdbcType="INTEGER" />
+    <result column="specification" property="specification" jdbcType="VARCHAR" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+    <result column="m_group_id" property="mGroupId" jdbcType="BIGINT" />
+    
+    <result column="mgName" property="mGroupName" jdbcType="BIGINT" />
+    <result column="unit_id" property="unitId" jdbcType="BIGINT" />
+    
+    <result column="uName" property="unitName" jdbcType="BIGINT" />
+    <result column="size" property="size" jdbcType="DOUBLE" />
+  </resultMap>
+  
+  <select id="findAllMateriel" resultMap="BaseResultMap" parameterType="com.xt.vo.Param" >
+    select a.*,b.name as mgName,c.name as uName from cx_materiel a inner join cx_material_group b on a.m_group_id=b.id inner join cx_unit c on a.unit_id=c.id
+    <if test="pageIndex !=null">
+    limit #{pageIndex},#{pageSize}
+    </if>
+    
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cx_materiel
+    where pn = #{pn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xt.vo.Materiel" >
+    insert into cx_materiel (pn, add_time, add_user_id, 
+      barcode, delete_state, depletion_num, 
+      edit_id, edit_time, humidity_day, 
+      is_humidity, limit_num, name, 
+      notes, repair_num, specification, 
+      total_num, m_group_id, unit_id, 
+      size)
+    values (#{pn,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=BIGINT}, 
+      #{barcode,jdbcType=VARCHAR}, #{deleteState,jdbcType=INTEGER}, #{depletionNum,jdbcType=INTEGER}, 
+      #{editId,jdbcType=BIGINT}, #{editTime,jdbcType=TIMESTAMP}, #{humidityDay,jdbcType=INTEGER}, 
+      #{isHumidity,jdbcType=INTEGER}, #{limitNum,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{notes,jdbcType=VARCHAR}, #{repairNum,jdbcType=INTEGER}, #{specification,jdbcType=VARCHAR}, 
+      #{totalNum,jdbcType=INTEGER}, #{mGroupId,jdbcType=BIGINT}, #{unitId,jdbcType=BIGINT}, 
+      #{size,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.vo.Materiel" >
+    insert into cx_materiel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pn != null" >
+        pn,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="barcode != null" >
+        barcode,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="depletionNum != null" >
+        depletion_num,
+      </if>
+      <if test="editId != null" >
+        edit_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="humidityDay != null" >
+        humidity_day,
+      </if>
+      <if test="isHumidity != null" >
+        is_humidity,
+      </if>
+      <if test="limitNum != null" >
+        limit_num,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+      <if test="repairNum != null" >
+        repair_num,
+      </if>
+      <if test="specification != null" >
+        specification,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+      <if test="mGroupId != null" >
+        m_group_id,
+      </if>
+      <if test="unitId != null" >
+        unit_id,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pn != null" >
+        #{pn,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="depletionNum != null" >
+        #{depletionNum,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="humidityDay != null" >
+        #{humidityDay,jdbcType=INTEGER},
+      </if>
+      <if test="isHumidity != null" >
+        #{isHumidity,jdbcType=INTEGER},
+      </if>
+      <if test="limitNum != null" >
+        #{limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="repairNum != null" >
+        #{repairNum,jdbcType=INTEGER},
+      </if>
+      <if test="specification != null" >
+        #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="mGroupId != null" >
+        #{mGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="unitId != null" >
+        #{unitId,jdbcType=BIGINT},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.vo.Materiel" >
+    update cx_materiel
+    <set >
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        add_user_id = #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="depletionNum != null" >
+        depletion_num = #{depletionNum,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        edit_id = #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="humidityDay != null" >
+        humidity_day = #{humidityDay,jdbcType=INTEGER},
+      </if>
+      <if test="isHumidity != null" >
+        is_humidity = #{isHumidity,jdbcType=INTEGER},
+      </if>
+      <if test="limitNum != null" >
+        limit_num = #{limitNum,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="repairNum != null" >
+        repair_num = #{repairNum,jdbcType=INTEGER},
+      </if>
+      <if test="specification != null" >
+        specification = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="mGroupId != null" >
+        m_group_id = #{mGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="unitId != null" >
+        unit_id = #{unitId,jdbcType=BIGINT},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where pn = #{pn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.vo.Materiel" >
+    update cx_materiel
+    set add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user_id = #{addUserId,jdbcType=BIGINT},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      delete_state = #{deleteState,jdbcType=INTEGER},
+      depletion_num = #{depletionNum,jdbcType=INTEGER},
+      edit_id = #{editId,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      humidity_day = #{humidityDay,jdbcType=INTEGER},
+      is_humidity = #{isHumidity,jdbcType=INTEGER},
+      limit_num = #{limitNum,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      notes = #{notes,jdbcType=VARCHAR},
+      repair_num = #{repairNum,jdbcType=INTEGER},
+      specification = #{specification,jdbcType=VARCHAR},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      m_group_id = #{mGroupId,jdbcType=BIGINT},
+      unit_id = #{unitId,jdbcType=BIGINT},
+      size = #{size,jdbcType=DOUBLE}
+    where pn = #{pn,jdbcType=VARCHAR}
+  </update>
+</mapper>

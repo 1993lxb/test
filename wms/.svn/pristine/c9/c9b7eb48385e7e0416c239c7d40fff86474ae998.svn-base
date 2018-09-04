@@ -1,0 +1,17 @@
+
+.ztree li span.button {background-image:url("../../../js/vendor/JQuery_zTree_v3.4/css/zTreeStyle/img/diy/open.png");background-repeat:no-repeat;}
+.ztree li span.button.noline_open {background-position: 0 0;background-image:url("../../../js/vendor/JQuery_zTree_v3.4/css/zTreeStyle/img/diy/open.png");background-repeat:no-repeat;}
+.ztree li span.button.noline_close {background-position: 0 0;background-image:url("../../../js/vendor/JQuery_zTree_v3.4/css/zTreeStyle/img/diy/close.png");background-repeat:no-repeat;}
+
+
+ .hid{
+ 	display:none;
+ }
+ .show{
+ 	display:block;
+ }
+ ul.ztree {
+ 	background-color:transparent;
+ 	margin-top:0px;
+ 	border-top:0px;
+ }

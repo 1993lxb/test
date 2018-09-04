@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xt.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.Menu" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user_id" property="addUserId" jdbcType="BIGINT" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+    <result column="edit_id" property="editId" jdbcType="BIGINT" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="sort" property="sort" jdbcType="BIGINT" />
+    <result column="parent_menuName" property="parentMenuName" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, add_time, add_user_id, delete_state, edit_id, edit_time, menu_name, menu_url, 
+    notes, parent_id, sort
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cx_menu
+    where id = #{id,jdbcType=BIGINT} and delete_state=0
+  </select>
+  
+  <select id="findMenuByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    a.*
+    from cx_menu  a INNER JOIN  cx_role_menu b on a.id=b.menu_id 
+    INNER JOIN cx_role c on b.role_id=c.id INNER JOIN cx_user_role d on c.id=d.role_id 
+    where d.user_id=#{userId,jdbcType=BIGINT} and a.delete_state=0
+  </select>
+  
+  <select id="findAllMenu" resultMap="BaseResultMap"  >
+    select 
+    *   
+    from cx_menu 
+     where  delete_state=0
+  </select>
+   <select id="findMenuByRoleId" resultMap="BaseResultMap"  parameterType="java.lang.Long">
+    select  a.*
+    from cx_menu  a INNER JOIN  cx_role_menu b on a.id=b.menu_id 
+    INNER JOIN cx_role c on b.role_id=c.id where c.id=#{roleId} and a.delete_state=0
+  </select>
+  
+  <select id="findMenu" resultMap="BaseResultMap">
+    SELECT a.*,b.menu_name as parent_menuName from cx_menu a left  JOIN cx_menu b
+     on a.parent_id=b.id where a.delete_state=0 and b.delete_state=0
+  </select>
+ 
+   <select id="findMenuByName" resultMap="BaseResultMap" parameterType="string">
+     SELECT a.*,b.menu_name as parent_menuName from cx_menu a 
+  left  JOIN cx_menu b on a.parent_id=b.id where a.menu_name like concat('%',#{name},'%') and a.delete_state=0 and b.delete_state=0
+  </select>
+  
+  <select id="findMenuByParentId" resultMap="BaseResultMap"  >
+    select * FROM cx_menu where parent_id is NULL and delete_state=0
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cx_menu
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insertMenu" parameterType="com.xt.vo.Menu"  useGeneratedKeys="true" keyProperty="id">
+    insert into cx_menu (id, add_time, add_user_id, 
+      delete_state, edit_id, edit_time, 
+      menu_name, menu_url, notes, 
+      parent_id, sort)
+    values (#{id,jdbcType=BIGINT}, #{addTime,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=BIGINT}, 
+      #{deleteState,jdbcType=INTEGER}, #{editId,jdbcType=BIGINT}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, #{notes,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{sort,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.vo.Menu" >
+    insert into cx_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="editId != null" >
+        edit_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuUrl != null" >
+        menu_url,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.vo.Menu" >
+    update cx_menu
+    <set >
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        add_user_id = #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        edit_id = #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.vo.Menu" >
+    update cx_menu
+    set  edit_id = #{editId,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      notes = #{notes,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      sort = #{sort,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateMenuState" parameterType="com.xt.vo.Menu" >
+    update cx_menu
+    set  delete_state = #{deleteState,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

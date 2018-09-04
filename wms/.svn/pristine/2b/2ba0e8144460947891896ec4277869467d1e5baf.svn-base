@@ -1,0 +1,48 @@
+package com.xt.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.xt.service.IMaterielService;
+import com.xt.utils.JsonResult;
+import com.xt.vo.MaterialGroup;
+import com.xt.vo.Materiel;
+import com.xt.vo.Param;
+@Controller
+@RequestMapping("/materiel")
+public class MaterielController {
+
+	@Autowired
+	private IMaterielService materielService;
+	
+	@RequestMapping("/findMaterielByParam")
+	@ResponseBody
+	public Map<String, Object> findAllMateriel(Param param){
+			List<Materiel>materiel=materielService.findAllMateriel(param);
+			int cnt=materielService.getTotalRows(param);
+			Map<String, Object> map=new HashMap<>();
+			map.put("res", materiel);
+			map.put("total", cnt);
+			return map;
+	}
+	@RequestMapping("/findMaterialGroup")
+	@ResponseBody
+	public JsonResult<List<MaterialGroup>> findMaterialGroup(){
+		JsonResult<List<MaterialGroup>> jr=new JsonResult<List<MaterialGroup>>();
+		try {
+			List<MaterialGroup> mg=materielService.findMaterialGroup();
+			jr.setMsg("成功");
+			jr.setErroCode("0");
+			jr.setT(mg);
+		} catch (Exception e) {
+			jr=new JsonResult<List<MaterialGroup>>("失败"+e.getMessage(), "1");
+		}
+		return jr;
+	}
+}

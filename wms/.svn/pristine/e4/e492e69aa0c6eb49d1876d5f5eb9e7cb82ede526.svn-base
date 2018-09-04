@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xt.dao.InventoryUnionMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.InventoryUnion" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user_id" property="addUserId" jdbcType="BIGINT" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+    <result column="edit_id" property="editId" jdbcType="BIGINT" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="actual_num" property="actualNum" jdbcType="INTEGER" />
+    <result column="current_num" property="currentNum" jdbcType="INTEGER" />
+    <result column="profit_loss_num" property="profitLossNum" jdbcType="INTEGER" />
+    <result column="pn" property="pn" jdbcType="VARCHAR" />
+    <result column="inventory_num" property="inventoryNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, add_time, add_user_id, delete_state, edit_id, edit_time, actual_num, current_num, 
+    profit_loss_num, pn, inventory_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cx_inventory_union
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cx_inventory_union
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xt.vo.InventoryUnion" >
+    insert into cx_inventory_union (id, add_time, add_user_id, 
+      delete_state, edit_id, edit_time, 
+      actual_num, current_num, profit_loss_num, 
+      pn, inventory_num)
+    values (#{id,jdbcType=BIGINT}, #{addTime,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=BIGINT}, 
+      #{deleteState,jdbcType=INTEGER}, #{editId,jdbcType=BIGINT}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{actualNum,jdbcType=INTEGER}, #{currentNum,jdbcType=INTEGER}, #{profitLossNum,jdbcType=INTEGER}, 
+      #{pn,jdbcType=VARCHAR}, #{inventoryNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.vo.InventoryUnion" >
+    insert into cx_inventory_union
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="editId != null" >
+        edit_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="actualNum != null" >
+        actual_num,
+      </if>
+      <if test="currentNum != null" >
+        current_num,
+      </if>
+      <if test="profitLossNum != null" >
+        profit_loss_num,
+      </if>
+      <if test="pn != null" >
+        pn,
+      </if>
+      <if test="inventoryNum != null" >
+        inventory_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualNum != null" >
+        #{actualNum,jdbcType=INTEGER},
+      </if>
+      <if test="currentNum != null" >
+        #{currentNum,jdbcType=INTEGER},
+      </if>
+      <if test="profitLossNum != null" >
+        #{profitLossNum,jdbcType=INTEGER},
+      </if>
+      <if test="pn != null" >
+        #{pn,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryNum != null" >
+        #{inventoryNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.vo.InventoryUnion" >
+    update cx_inventory_union
+    <set >
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        add_user_id = #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        edit_id = #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="actualNum != null" >
+        actual_num = #{actualNum,jdbcType=INTEGER},
+      </if>
+      <if test="currentNum != null" >
+        current_num = #{currentNum,jdbcType=INTEGER},
+      </if>
+      <if test="profitLossNum != null" >
+        profit_loss_num = #{profitLossNum,jdbcType=INTEGER},
+      </if>
+      <if test="pn != null" >
+        pn = #{pn,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryNum != null" >
+        inventory_num = #{inventoryNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.vo.InventoryUnion" >
+    update cx_inventory_union
+    set add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user_id = #{addUserId,jdbcType=BIGINT},
+      delete_state = #{deleteState,jdbcType=INTEGER},
+      edit_id = #{editId,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      actual_num = #{actualNum,jdbcType=INTEGER},
+      current_num = #{currentNum,jdbcType=INTEGER},
+      profit_loss_num = #{profitLossNum,jdbcType=INTEGER},
+      pn = #{pn,jdbcType=VARCHAR},
+      inventory_num = #{inventoryNum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

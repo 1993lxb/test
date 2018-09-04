@@ -1,0 +1,16 @@
+package com.xt.service;
+
+import java.util.List;
+
+import com.xt.vo.MaterialGroup;
+import com.xt.vo.Materiel;
+import com.xt.vo.Param;
+
+public interface IMaterielService {
+
+	public List<Materiel> findAllMateriel(Param param);
+	
+	public Integer getTotalRows(Param param);
+	
+	public List<MaterialGroup> findMaterialGroup();
+}

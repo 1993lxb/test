@@ -1,0 +1,83 @@
+package com.xt.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
+
+import com.xt.utils.WarehouseDynamicSql;
+import com.xt.vo.Param;
+import com.xt.vo.Warehouse;
+
+public interface WarehouseMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(Warehouse record);
+
+    int insertSelective(Warehouse record);
+
+    Warehouse selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(Warehouse record);
+
+    int updateByPrimaryKey(Warehouse record);
+    
+    /**
+     *查询仓库:动态查询，查所有和条件查询
+     *
+     */
+    @SelectProvider(method="findWarehouseByParam",type=WarehouseDynamicSql.class)
+    @Results(value={
+    		@Result(id=true,column="id",property="id"),
+    		@Result(column="add_time",property="addTime"),
+    		@Result(column="add_user_id",property="addUserId"),
+    		@Result(column="delete_state",property="deleteState"),
+    		@Result(column="edit_id",property="editId"),
+    		@Result(column="edit_time",property="editTime"),
+    		@Result(column="address",property="address"),
+    		@Result(column="name",property="name"),
+    		@Result(column="notes",property="notes"),
+    		@Result(column="tel",property="tel"),
+    		@Result(column="image_path",property="imagePath"),
+    		@Result(column="is_majorwh",property="isMajorwh"),
+    		@Result(column="is_bondedwh",property="isBondedwh"),
+    		@Result(column="factoryname",property="factoryName")
+    })
+    public List<Warehouse> findAllWarehouse(Param param, String name); 
+    
+    /**
+     *查询条数:动态查询，查所有和条件查询
+     *
+     */
+    @SelectProvider(method="getTotalRows",type=WarehouseDynamicSql.class)
+    public Integer getTotalRows(Param param, String name);
+    
+    @Insert("insert into cx_warehouse values(default,now(),#{addUserId},0,null,null,#{address},#{imagePath},#{isBondedwh},#{isMajorwh},#{name},#{notes},#{tel},#{factoryId})")
+    public int addWarehouse(Warehouse warehouse);
+   
+    @Update("update cx_warehouse set delete_state=1 where id=#{id}")
+    public int delWarehouse(long id);
+    
+    //查询所有仓库
+    @Select("select * from cx_warehouse where delete_state=0")
+    @Results(value={
+    		@Result(id=true,column="id",property="id"),
+    		@Result(column="add_time",property="addTime"),
+    		@Result(column="add_user_id",property="addUserId"),
+    		@Result(column="delete_state",property="deleteState"),
+    		@Result(column="edit_id",property="editId"),
+    		@Result(column="edit_time",property="editTime"),
+    		@Result(column="address",property="address"),
+    		@Result(column="name",property="name"),
+    		@Result(column="notes",property="notes"),
+    		@Result(column="tel",property="tel"),
+    		@Result(column="image_path",property="imagePath"),
+    		@Result(column="is_majorwh",property="isMajorwh"),
+    		@Result(column="is_bondedwh",property="isBondedwh"),
+    })
+    public List<Warehouse> findWarehouse(); 
+}

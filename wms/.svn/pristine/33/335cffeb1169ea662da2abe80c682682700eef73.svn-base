@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xt.dao.MoveHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.MoveHistory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="actual_num" property="actualNum" jdbcType="INTEGER" />
+    <result column="bom_num" property="bomNum" jdbcType="VARCHAR" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+    <result column="needs_num" property="needsNum" jdbcType="INTEGER" />
+    <result column="notes" property="notes" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="VARCHAR" />
+    <result column="received_time" property="receivedTime" jdbcType="TIMESTAMP" />
+    <result column="received_user_id" property="receivedUserId" jdbcType="BIGINT" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="send_user_id" property="sendUserId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="pn" property="pn" jdbcType="VARCHAR" />
+    <result column="move_type" property="moveType" jdbcType="BIGINT" />
+    <result column="new_warehouse_id" property="newWarehouseId" jdbcType="BIGINT" />
+    <result column="old_warehouse_id" property="oldWarehouseId" jdbcType="BIGINT" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="edit_user_id" property="editUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, actual_num, bom_num, delete_state, needs_num, notes, order_num, received_time, 
+    received_user_id, send_time, send_user_id, status, pn, move_type, new_warehouse_id, 
+    old_warehouse_id, edit_time, edit_user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cx_move_history
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cx_move_history
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xt.vo.MoveHistory" >
+    insert into cx_move_history (id, actual_num, bom_num, 
+      delete_state, needs_num, notes, 
+      order_num, received_time, received_user_id, 
+      send_time, send_user_id, status, 
+      pn, move_type, new_warehouse_id, 
+      old_warehouse_id, edit_time, edit_user_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{actualNum,jdbcType=INTEGER}, #{bomNum,jdbcType=VARCHAR}, 
+      #{deleteState,jdbcType=INTEGER}, #{needsNum,jdbcType=INTEGER}, #{notes,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=VARCHAR}, #{receivedTime,jdbcType=TIMESTAMP}, #{receivedUserId,jdbcType=BIGINT}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{sendUserId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+      #{pn,jdbcType=VARCHAR}, #{moveType,jdbcType=BIGINT}, #{newWarehouseId,jdbcType=BIGINT}, 
+      #{oldWarehouseId,jdbcType=BIGINT}, #{editTime,jdbcType=TIMESTAMP}, #{editUserId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.vo.MoveHistory" >
+    insert into cx_move_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="actualNum != null" >
+        actual_num,
+      </if>
+      <if test="bomNum != null" >
+        bom_num,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="needsNum != null" >
+        needs_num,
+      </if>
+      <if test="notes != null" >
+        notes,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="receivedTime != null" >
+        received_time,
+      </if>
+      <if test="receivedUserId != null" >
+        received_user_id,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="sendUserId != null" >
+        send_user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="pn != null" >
+        pn,
+      </if>
+      <if test="moveType != null" >
+        move_type,
+      </if>
+      <if test="newWarehouseId != null" >
+        new_warehouse_id,
+      </if>
+      <if test="oldWarehouseId != null" >
+        old_warehouse_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="editUserId != null" >
+        edit_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="actualNum != null" >
+        #{actualNum,jdbcType=INTEGER},
+      </if>
+      <if test="bomNum != null" >
+        #{bomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="needsNum != null" >
+        #{needsNum,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTime != null" >
+        #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivedUserId != null" >
+        #{receivedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendUserId != null" >
+        #{sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pn != null" >
+        #{pn,jdbcType=VARCHAR},
+      </if>
+      <if test="moveType != null" >
+        #{moveType,jdbcType=BIGINT},
+      </if>
+      <if test="newWarehouseId != null" >
+        #{newWarehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="oldWarehouseId != null" >
+        #{oldWarehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editUserId != null" >
+        #{editUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.vo.MoveHistory" >
+    update cx_move_history
+    <set >
+      <if test="actualNum != null" >
+        actual_num = #{actualNum,jdbcType=INTEGER},
+      </if>
+      <if test="bomNum != null" >
+        bom_num = #{bomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="needsNum != null" >
+        needs_num = #{needsNum,jdbcType=INTEGER},
+      </if>
+      <if test="notes != null" >
+        notes = #{notes,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedTime != null" >
+        received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivedUserId != null" >
+        received_user_id = #{receivedUserId,jdbcType=BIGINT},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendUserId != null" >
+        send_user_id = #{sendUserId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pn != null" >
+        pn = #{pn,jdbcType=VARCHAR},
+      </if>
+      <if test="moveType != null" >
+        move_type = #{moveType,jdbcType=BIGINT},
+      </if>
+      <if test="newWarehouseId != null" >
+        new_warehouse_id = #{newWarehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="oldWarehouseId != null" >
+        old_warehouse_id = #{oldWarehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editUserId != null" >
+        edit_user_id = #{editUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.vo.MoveHistory" >
+    update cx_move_history
+    set actual_num = #{actualNum,jdbcType=INTEGER},
+      bom_num = #{bomNum,jdbcType=VARCHAR},
+      delete_state = #{deleteState,jdbcType=INTEGER},
+      needs_num = #{needsNum,jdbcType=INTEGER},
+      notes = #{notes,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=VARCHAR},
+      received_time = #{receivedTime,jdbcType=TIMESTAMP},
+      received_user_id = #{receivedUserId,jdbcType=BIGINT},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      send_user_id = #{sendUserId,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      pn = #{pn,jdbcType=VARCHAR},
+      move_type = #{moveType,jdbcType=BIGINT},
+      new_warehouse_id = #{newWarehouseId,jdbcType=BIGINT},
+      old_warehouse_id = #{oldWarehouseId,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      edit_user_id = #{editUserId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

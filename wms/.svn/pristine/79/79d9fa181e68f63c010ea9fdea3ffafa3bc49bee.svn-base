@@ -1,0 +1,6 @@
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+	display: inline;
+	padding: 0;
+	margin-left: 0;
+	border: 0;
+}

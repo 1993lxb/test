@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xt.dao.MaterielDiscMapper" >
+  <resultMap id="BaseResultMap" type="com.xt.vo.MaterielDisc" >
+    <id column="upn" property="upn" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user_id" property="addUserId" jdbcType="BIGINT" />
+    <result column="barcode" property="barcode" jdbcType="VARCHAR" />
+    <result column="caption" property="caption" jdbcType="VARCHAR" />
+    <result column="current_num" property="currentNum" jdbcType="INTEGER" />
+    <result column="delete_state" property="deleteState" jdbcType="INTEGER" />
+    <result column="edit_id" property="editId" jdbcType="BIGINT" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="expire_date" property="expireDate" jdbcType="DATE" />
+    <result column="humidity_expire_date" property="humidityExpireDate" jdbcType="DATE" />
+    <result column="max_num" property="maxNum" jdbcType="INTEGER" />
+    <result column="production_date" property="productionDate" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="pn" property="pn" jdbcType="VARCHAR" />
+    <result column="supplier_id" property="supplierId" jdbcType="BIGINT" />
+    <result column="wh_place_id" property="whPlaceId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    upn, add_time, add_user_id, barcode, caption, current_num, delete_state, edit_id, 
+    edit_time, expire_date, humidity_expire_date, max_num, production_date, status, pn, 
+    supplier_id, wh_place_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from cx_materiel_disc
+    where upn = #{upn,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from cx_materiel_disc
+    where upn = #{upn,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xt.vo.MaterielDisc" >
+    insert into cx_materiel_disc (upn, add_time, add_user_id, 
+      barcode, caption, current_num, 
+      delete_state, edit_id, edit_time, 
+      expire_date, humidity_expire_date, max_num, 
+      production_date, status, pn, 
+      supplier_id, wh_place_id)
+    values (#{upn,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{addUserId,jdbcType=BIGINT}, 
+      #{barcode,jdbcType=VARCHAR}, #{caption,jdbcType=VARCHAR}, #{currentNum,jdbcType=INTEGER}, 
+      #{deleteState,jdbcType=INTEGER}, #{editId,jdbcType=BIGINT}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{expireDate,jdbcType=DATE}, #{humidityExpireDate,jdbcType=DATE}, #{maxNum,jdbcType=INTEGER}, 
+      #{productionDate,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{pn,jdbcType=VARCHAR}, 
+      #{supplierId,jdbcType=BIGINT}, #{whPlaceId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.vo.MaterielDisc" >
+    insert into cx_materiel_disc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="upn != null" >
+        upn,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUserId != null" >
+        add_user_id,
+      </if>
+      <if test="barcode != null" >
+        barcode,
+      </if>
+      <if test="caption != null" >
+        caption,
+      </if>
+      <if test="currentNum != null" >
+        current_num,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="editId != null" >
+        edit_id,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="expireDate != null" >
+        expire_date,
+      </if>
+      <if test="humidityExpireDate != null" >
+        humidity_expire_date,
+      </if>
+      <if test="maxNum != null" >
+        max_num,
+      </if>
+      <if test="productionDate != null" >
+        production_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="pn != null" >
+        pn,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="whPlaceId != null" >
+        wh_place_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="upn != null" >
+        #{upn,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="barcode != null" >
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="caption != null" >
+        #{caption,jdbcType=VARCHAR},
+      </if>
+      <if test="currentNum != null" >
+        #{currentNum,jdbcType=INTEGER},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireDate != null" >
+        #{expireDate,jdbcType=DATE},
+      </if>
+      <if test="humidityExpireDate != null" >
+        #{humidityExpireDate,jdbcType=DATE},
+      </if>
+      <if test="maxNum != null" >
+        #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="productionDate != null" >
+        #{productionDate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pn != null" >
+        #{pn,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="whPlaceId != null" >
+        #{whPlaceId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.vo.MaterielDisc" >
+    update cx_materiel_disc
+    <set >
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUserId != null" >
+        add_user_id = #{addUserId,jdbcType=BIGINT},
+      </if>
+      <if test="barcode != null" >
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="caption != null" >
+        caption = #{caption,jdbcType=VARCHAR},
+      </if>
+      <if test="currentNum != null" >
+        current_num = #{currentNum,jdbcType=INTEGER},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=INTEGER},
+      </if>
+      <if test="editId != null" >
+        edit_id = #{editId,jdbcType=BIGINT},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireDate != null" >
+        expire_date = #{expireDate,jdbcType=DATE},
+      </if>
+      <if test="humidityExpireDate != null" >
+        humidity_expire_date = #{humidityExpireDate,jdbcType=DATE},
+      </if>
+      <if test="maxNum != null" >
+        max_num = #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="productionDate != null" >
+        production_date = #{productionDate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="pn != null" >
+        pn = #{pn,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="whPlaceId != null" >
+        wh_place_id = #{whPlaceId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where upn = #{upn,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.vo.MaterielDisc" >
+    update cx_materiel_disc
+    set add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user_id = #{addUserId,jdbcType=BIGINT},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      caption = #{caption,jdbcType=VARCHAR},
+      current_num = #{currentNum,jdbcType=INTEGER},
+      delete_state = #{deleteState,jdbcType=INTEGER},
+      edit_id = #{editId,jdbcType=BIGINT},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      expire_date = #{expireDate,jdbcType=DATE},
+      humidity_expire_date = #{humidityExpireDate,jdbcType=DATE},
+      max_num = #{maxNum,jdbcType=INTEGER},
+      production_date = #{productionDate,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      pn = #{pn,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=BIGINT},
+      wh_place_id = #{whPlaceId,jdbcType=BIGINT}
+    where upn = #{upn,jdbcType=VARCHAR}
+  </update>
+</mapper>
